@@ -1,19 +1,29 @@
 # cmd : source setup_conf
 
 TOOL_DIR=$HOME/workspace/tool
-if [ ! -d $TOOL_DIR ] ; then
+
+
+#
+# not change
+#
+counter=0
+while [ ! -d $TOOL_DIR ] && [ $counter -lt 3 ]
+do
     echo "input tool dir full path"
     echo -n "TOOL_DIR="
     read ans
     TOOL_DIR=${ans}
-fi
+    counter=`expr $counter + 1`
+done
+
 
 alias backup="/bin/sh ${TOOL_DIR}/backup.sh"
 alias genrtc="/bin/sh ${TOOL_DIR}/generator/gen.sh"
+alias memo="/bin/sh ${TOOL_DIR}/memo.sh"
 
 
 #
-# opt
+# grx
 #
 if [ "$1" == "grx" ]; then
     echo "add grx mode"

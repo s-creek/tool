@@ -1,7 +1,7 @@
 #!/bin/sh
 
 BACKUPDIR=${HOME}/backup
-echo `dirname $0`
+
 
 #
 # not change
