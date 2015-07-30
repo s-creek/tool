@@ -15,6 +15,7 @@ do
     TOOL_DIR=${ans}
     counter=`expr $counter + 1`
 done
+echo "tool dir = "$TOOL_DIR
 
 
 alias backup="/bin/sh ${TOOL_DIR}/backup.sh"
