@@ -1,0 +1,23 @@
+# cmd : source setup_conf
+
+TOOL_DIR=$HOME/workspace/tool
+if [ ! -d $TOOL_DIR ] ; then
+    echo "input tool dir full path"
+    echo -n "TOOL_DIR="
+    read ans
+    TOOL_DIR=${ans}
+fi
+
+alias backup="/bin/sh ${TOOL_DIR}/backup.sh"
+alias genrtc="/bin/sh ${TOOL_DIR}/generator/gen.sh"
+
+
+#
+# opt
+#
+if [ "$1" == "grx" ]; then
+    echo "add grx mode"
+    export PATH=/opt/grx/bin:$PATH
+    export PKG_CONFIG_PATH=/opt/grx/lib/pkgconfig:$PKG_CONFIG_PATH
+    export LD_LIBRARY_PATH=/opt/grx/lib:$LD_LIBRARY_PATH
+fi

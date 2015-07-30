@@ -1,11 +1,21 @@
 #!/bin/sh
 
-COMP_NAME=creekQrCodeReader
+COMP_NAME=$1
+if [ -z "$COMP_NAME" ] ; then
+    echo "input component name"
+    echo -n "COMP_NAME="
+    read ans
+    COMP_NAME=${ans}
+else
+    shift 1
+fi
 
 
+GENERATOR_DIR=`dirname $0`
 mkdir -p ${COMP_NAME}
-cp make.sh clean.sh CMakeLists.txt ./${COMP_NAME}/
-sed -e "s/USER_COMP_NAME/${COMP_NAME}/g" make.sh > ./${COMP_NAME}/make.sh
+cp ${GENERATOR_DIR}/make.sh ${GENERATOR_DIR}/clean.sh ${GENERATOR_DIR}/CMakeLists.txt ${GENERATOR_DIR}/rtc.conf ./${COMP_NAME}/
+sed -e "s/USER_COMP_NAME/${COMP_NAME}/g" ${GENERATOR_DIR}/make.sh > ./${COMP_NAME}/make.sh
+sed -e "s/USER_COMP_NAME/${COMP_NAME}/g" ${GENERATOR_DIR}/rtc.conf > ./${COMP_NAME}/rtc.conf
 
 
 EXTRA_MODE=OFF
@@ -17,6 +27,7 @@ if [ -e ${COMP_NAME}Service.idl ]; then
 else
     echo "normal mode"
 fi
+
 
 cd ${COMP_NAME}
 rtc-template -bcxx \
@@ -30,7 +41,7 @@ rtc-template -bcxx \
     --module-act-type=SPORADIC \
     --module-max-inst=0 \
     --inport=image:Img::TimedCameraImage \
-    ${EXTRA_OPT}
+    ${EXTRA_OPT} $@
 rm *_vc*
 rm *.bat *.yaml
 rm user_config.vsprops
@@ -62,4 +73,3 @@ if [ ${EXTRA_MODE} = ON ]; then
     removeOpenHRP ${COMP_NAME}Service_impl.h
     removeOpenHRP ${COMP_NAME}Service_impl.cpp
 fi
-
