@@ -40,7 +40,6 @@ rtc-template -bcxx \
     --module-comp-type=DataFlowComponent \
     --module-act-type=SPORADIC \
     --module-max-inst=0 \
-    --inport=image:Img::TimedCameraImage \
     ${EXTRA_OPT} $@
 rm *_vc*
 rm *.bat *.yaml
