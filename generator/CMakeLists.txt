@@ -25,7 +25,7 @@ include(GenerateStubSkel)
 
 
 include_directories(${CMAKE_MODULE_PATH})
-include(GenerateStubSkel)
+
 
 ####
 ## for each component

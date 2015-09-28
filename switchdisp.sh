@@ -13,6 +13,7 @@
 #
 left_display_width=1680
 #right_display_width=1920
+offset=65
 
 
 #
@@ -52,10 +53,10 @@ active_window_y=`getWindowY "${active_window_id}"`
 
 if [ $1 == "2r" ] && [ ${active_window_x} -lt ${left_display_width} ]; then
     echo "to right"
-    new_window_x=`echo "scale=5; ${active_window_x}+${left_display_width}-1" | bc`
+    new_window_x=`echo "scale=5; ${active_window_x}+${left_display_width}-${offset}-1" | bc`
 elif [ $1 == "2l" ] && [ ${active_window_x} -ge ${left_display_width} ]; then
     echo "to left"
-    new_window_x=`echo "scale=5; ${active_window_x}-${left_display_width}-1" | bc`
+    new_window_x=`echo "scale=5; ${active_window_x}-${left_display_width}+${offset}-1" | bc`
 else
     exit
 fi
@@ -71,3 +72,4 @@ echo "move pos     = "${new_window_x}, ${active_window_y}
 
 
 wmctrl -i -r $active_window_id -e 0,$new_window_x,-1,-1,-1
+

@@ -12,15 +12,13 @@ fi
 
 
 GENERATOR_DIR=`dirname $0`
-mkdir -p ${COMP_NAME}
-cp ${GENERATOR_DIR}/make.sh ${GENERATOR_DIR}/clean.sh ${GENERATOR_DIR}/CMakeLists.txt ${GENERATOR_DIR}/rtc.conf ./${COMP_NAME}/
-sed -e "s/USER_COMP_NAME/${COMP_NAME}/g" ${GENERATOR_DIR}/make.sh > ./${COMP_NAME}/make.sh
-sed -e "s/USER_COMP_NAME/${COMP_NAME}/g" ${GENERATOR_DIR}/rtc.conf > ./${COMP_NAME}/rtc.conf
+cp ${GENERATOR_DIR}/make.sh ${GENERATOR_DIR}/clean.sh ${GENERATOR_DIR}/CMakeLists.txt ${GENERATOR_DIR}/rtc.conf .
+sed -e "s/USER_COMP_NAME/${COMP_NAME}/g" ${GENERATOR_DIR}/make.sh > make.sh
+sed -e "s/USER_COMP_NAME/${COMP_NAME}/g" ${GENERATOR_DIR}/rtc.conf > rtc.conf
 
 
 EXTRA_MODE=OFF
 if [ -e ${COMP_NAME}Service.idl ]; then
-    cp ${COMP_NAME}Service.idl ./${COMP_NAME}/
     EXTRA_OPT="--service=${COMP_NAME}Service:service0:${COMP_NAME}Service --service-idl=${COMP_NAME}Service.idl"
     EXTRA_MODE=ON
     echo "extra mode"
@@ -29,7 +27,6 @@ else
 fi
 
 
-cd ${COMP_NAME}
 rtc-template -bcxx \
     --module-name=${COMP_NAME} \
     --module-type=${COMP_NAME} \
