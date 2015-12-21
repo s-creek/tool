@@ -1,6 +1,6 @@
 # cmd : source setup_conf
 
-TOOL_DIR=$HOME/workspace/tool
+TOOL_DIR=`dirname "${BASH_SOURCE[0]}"`
 
 
 #
