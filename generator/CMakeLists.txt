@@ -39,7 +39,8 @@ set(comp_sources ${comp_name}.cpp)
 
 add_library(${comp_name} SHARED ${comp_sources})
 target_link_libraries(${comp_name} ${OPENRTM_LIBRARIES})
-target_link_libraries(${comp_name} lapack blas f2c m)
+target_link_libraries(${comp_name} m)
+#target_link_libraries(lapack blas f2c)
 set_target_properties(${comp_name} PROPERTIES PREFIX "")
 
 if (NO_COMP)
