@@ -10,13 +10,13 @@ export COMP_NAME="USER_COMP_NAME"
 #
 # not change !!
 #
-export RTM_ROOT=/usr
-export PATH=/usr/bin:$PATH
-export PKG_CONFIG_PATH=/usr/lib/pkgconfig:$PKG_CONFIG_PATH
-export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+export RTM_ROOT=/opt/grx
+export PATH=/usr/pkg/bin:/opt/grx/bin:$PATH
+export PKG_CONFIG_PATH=/opt/grx/lib/pkgconfig:/usr/pkg/lib/pkgconfig:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=/usr/pkg/lib:/opt/grx/lib:/opt/grx/lib/OpenRTM-aist:$LD_LIBRARY_PATH
 
-CMAKE_OPT="-DCMAKE_INSTALL_PREFIX:STRING=/usr/lib/choreonoid-1.5  -DCOMP_NAME=${COMP_NAME}"
-MAKE_OPT="VERBOSE=1 $@"
+CMAKE_OPT="-DCMAKE_INSTALL_PREFIX:STRING=/opt/grx  -DCOMP_NAME=${COMP_NAME} $@"
+MAKE_OPT="VERBOSE=1"
 
 # for logging
 DATE=`/bin/date '+%Y%m%d%H%M'`
