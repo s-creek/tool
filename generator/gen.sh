@@ -15,6 +15,7 @@ GENERATOR_DIR=`dirname $0`
 cp ${GENERATOR_DIR}/make.sh ${GENERATOR_DIR}/clean.sh ${GENERATOR_DIR}/CMakeLists.txt ${GENERATOR_DIR}/rtc.conf .
 sed -e "s/USER_COMP_NAME/${COMP_NAME}/g" ${GENERATOR_DIR}/make.sh > make.sh
 sed -e "s/USER_COMP_NAME/${COMP_NAME}/g" ${GENERATOR_DIR}/rtc.conf > rtc.conf
+touch sample.conf
 
 
 EXTRA_MODE=OFF
